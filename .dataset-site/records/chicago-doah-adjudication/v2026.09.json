@@ -1,0 +1,106 @@
+{
+  "artifact_version": "b71586bf28fa56ebbfaede26c4494d68b166545ac504b2ebd8a52c7f272627ef",
+  "assets": {
+    "eval.csv": {
+      "bytes": 267311,
+      "download": "https://github.com/earino/chicago-doah-adjudication/releases/download/v2026.09/eval.csv",
+      "hf_path": "data/eval.csv",
+      "sha256": "bcecdbff8018f74c01697229591b9e9c87b5206c8d61d8f7ef77fa37669c967e"
+    },
+    "holdout.csv": {
+      "bytes": 226237,
+      "download": "https://github.com/earino/chicago-doah-adjudication/releases/download/v2026.09/holdout.csv",
+      "hf_path": "data/holdout.csv",
+      "sha256": "e9855daa7a7d523ea00ad2184867d73d1bf747d4c0d718a8398da5acf749e8be"
+    },
+    "meta.json": {
+      "bytes": 2300,
+      "download": "https://github.com/earino/chicago-doah-adjudication/releases/download/v2026.09/meta.json",
+      "hf_path": "meta.json",
+      "sha256": "696730446f8bb10c9d7e26a6b1eb8dae46843e887d62846c38081469a9743979"
+    },
+    "quality.json": {
+      "bytes": 3803,
+      "download": "https://github.com/earino/chicago-doah-adjudication/releases/download/v2026.09/quality.json",
+      "hf_path": "quality.json",
+      "sha256": "7ee12a3db4dbd00bf336f3f96b220b260f6e9b463f0cd7fc41a5a58cb527d882"
+    },
+    "train.csv": {
+      "bytes": 3751973,
+      "download": "https://github.com/earino/chicago-doah-adjudication/releases/download/v2026.09/train.csv",
+      "hf_path": "data/train.csv",
+      "sha256": "67b2a58379b4d1ca8eb11670f9f8a51b1fe15fb4945a173a805a5f474cd154cb"
+    }
+  },
+  "baseline": {
+    "metrics": {
+      "Evaluation ROC AUC": 0.6915
+    },
+    "scope": "one baseline only. No agent or harness comparison was run, and none is implied - that is outside this publication milestone."
+  },
+  "dataset": "chicago-doah-adjudication",
+  "domain": "Municipal justice",
+  "github_repository": "earino/chicago-doah-adjudication",
+  "hf_repository": "earino/chicago-doah-adjudication",
+  "licenses": {
+    "attribution": "City of Chicago, Department of Administrative Hearings, Ordinance Violations, dataset 6br9-quuz, https://data.cityofchicago.org/d/6br9-quuz, accessed 2026-09-26",
+    "citation": "City of Chicago. Ordinance Violations (Department of Administrative Hearings). City of Chicago Data Portal, dataset 6br9-quuz. Data Terms of Use. Derived dataset: Chicago DOAH adjudication outcome prediction dataset.",
+    "code": "MIT",
+    "compilation_scope": "No separate dedication. The City's Data Terms of Use regulate distribution and secondary or derivative use; they do not grant us a right to sublicense the source rows, so our compilation is distributed under those Terms. Our own code and documentation are MIT. Nothing here may be presented as CC0, CC-BY, public domain or any standard open licence - the sources do not support it.",
+    "data_compilation": "LicenseRef-CityOfChicago-DataTermsOfUse",
+    "source_data": "LicenseRef-CityOfChicago-DataTermsOfUse"
+  },
+  "limitations": [
+    "This is a derived research dataset, not an official City of Chicago product, and nothing in it is a statement about an individual case or hearing officer.",
+    "The positive rate rises across the temporal splits (0.63 train, 0.90 eval, 0.93 holdout) because the City republishes this dataset continuously and older dockets are progressively cleaned up. Absolute scores are not comparable across the three windows for that reason.",
+    "The holdout is downloadable. Keep its labels outside the evaluated agent's workspace during an evaluation."
+  ],
+  "post": {
+    "paragraphs": [
+      "This release turns the City of Chicago's Department of Administrative Hearings ordinance-violation records into a case-level prediction task with temporal training, evaluation and holdout splits. The construction code, qualification checks and a reproducible baseline travel with the dataset.",
+      "The source publishes one row per violation charge. Each case here is reduced to a single row keyed by its docket number, and the label is a case-level rule over the City's per-charge disposition: a case counts as Liable when at least one of its charges carries a liability finding. Cases whose charges are all undecided never ship, so the shipped total sits well below the number of docket numbers seen.",
+      "The City's hearing_date column is deliberately not published, and neither is anything derived from it. On a decided case it records the hearing at which the outcome was set, which is after the prediction instant. An earlier version of this artifact shipped it alongside a derived feature and was withdrawn; the repository records what that version did and why the qualification gate passed it anyway.",
+      "The recorded baseline demonstrates the runner's training and prediction contract on this artifact. It is not an agent or harness comparison."
+    ],
+    "title": "A prediction task from Chicago's administrative hearings"
+  },
+  "qualification": {
+    "gate_version": "1.3.0",
+    "result": "PASSED - 32 checks, 0 failed, on the full 53,763-case artifact, on the worker"
+  },
+  "record_sha256": "d77f2534bf9be8af28e8e2fcd28cca09633adfcae5f641811720012e128f9591",
+  "release_date": "2026-09-26",
+  "release_tag": "v2026.09",
+  "schema_version": 1,
+  "site_revision": 1,
+  "source": {
+    "name": "City of Chicago - Department of Administrative Hearings (DOAH) Ordinance Violations",
+    "url": "https://data.cityofchicago.org/d/6br9-quuz"
+  },
+  "splits": {
+    "eval": {
+      "positives": 3077,
+      "rows": 3436
+    },
+    "holdout": {
+      "positives": 2715,
+      "rows": 2913
+    },
+    "train": {
+      "positives": 29959,
+      "rows": 47414
+    }
+  },
+  "summary": "Predict whether a Department of Administrative Hearings case ends in a liability finding, using only what the docket records before the hearing.",
+  "task_type": "binary-classification",
+  "title": "Chicago administrative hearing outcomes",
+  "urls": {
+    "catalog": "https://earino.github.io/dataset-factory-site/",
+    "github": "https://github.com/earino/chicago-doah-adjudication",
+    "github_release": "https://github.com/earino/chicago-doah-adjudication/releases/tag/v2026.09",
+    "huggingface": "https://huggingface.co/datasets/earino/chicago-doah-adjudication",
+    "huggingface_version": "https://huggingface.co/datasets/earino/chicago-doah-adjudication/tree/v2026.09",
+    "version": "https://earino.github.io/chicago-doah-adjudication/versions/v2026.09/",
+    "website": "https://earino.github.io/chicago-doah-adjudication/"
+  }
+}
