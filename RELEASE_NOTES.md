@@ -6,16 +6,17 @@ docketing**, whether the hearing officer will record a `Liable` disposition on a
 of the case.
 
 **53,763 cases**, three time-separated splits, City of Chicago open data. Artifact version
-`b71586bf28fa56ebbfaede26c4494d68b166545ac504b2ebd8a52c7f272627ef`. **Not yet public** — this
-release is staged private and flips to public only on explicit operator authorisation. Publication
-changes no data file, tag or checksum.
+`b71586bf28fa56ebbfaede26c4494d68b166545ac504b2ebd8a52c7f272627ef`. **Published 2026-09-26** —
+public on both destinations after explicit operator authorisation; publication changed no data file,
+tag or checksum. Also on Hugging Face as `earino/chicago-doah-adjudication`, revision `v2026.09`.
 
 ## Get it
 
 ```bash
 git clone https://github.com/earino/chicago-doah-adjudication.git
 cd chicago-doah-adjudication
-python3 get_dataset.py --staging            # fetches the release assets, verifies SHA-256
+python3 get_dataset.py --dest ./task        # fetches the release assets, verifies SHA-256
+( cd task && sha256sum -c ../SHA256SUMS )   # the published verification command
 python3 code/qualify_dataset.py ./task      # the qualification gate, 32 checks
 sh baseline/reproduce_baseline.sh ./task    # the recorded baseline
 ```

@@ -53,7 +53,8 @@ result. `get_dataset.py` fetches the published asset and unpacks exactly these f
 ## Download and use
 
 ```bash
-python3 get_dataset.py --staging     # or --local ./release-dir; --dest ./task
+python3 get_dataset.py --dest ./task
+( cd task && sha256sum -c ../SHA256SUMS )
 python3 code/qualify_dataset.py ./task
 sh baseline/reproduce_baseline.sh ./task
 ```

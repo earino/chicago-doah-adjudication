@@ -70,3 +70,47 @@ byte-identical** to `expected_artifact.json`.
 predictor already scores 89.6% accuracy on `eval`; an AUC of 0.6915 is a genuine floor above
 chance, but this is a hard, drifting-population task and the number should not be dressed up. No
 agent or harness comparison was run, and none is implied.
+
+## 5. The package was consumed from a fresh environment
+
+`chicago-consumer-001`, on a worker with no dataset-factory access and no GitHub credential,
+against the staged release (release `397376542`, tag `v2026.09`), in `python:3.13-slim`
+(`sha256:7c61056e61ac89e852de05f3dc6fa51a6dd2181797bceed46aa725dd7cb2cd3b`), exit 0:
+
+1. All five assets arrived carrying the digests recorded in `SHA256SUMS`; the fetch reported no
+   failures.
+2. The 21 package files taken from the repository matched the hashes in `MANIFEST.json`.
+3. `sha256sum -c SHA256SUMS` reported `OK` for all five.
+4. The published gate re-ran on the fetched bytes: `QUALIFICATION PASSED`, artifact version
+   `b71586bf28fa56eb`.
+5. The published baseline reproduced through both runner paths: `Eval AUC: 0.6915`, `CONTRACT OK`.
+
+The steps run are the ones the package documents - the layout `get_dataset.py` produces,
+`sha256sum -c`, `code/qualify_dataset.py`, `baseline/reproduce_baseline.sh` - not a private path.
+
+**Not covered.** The consumer's fetch used the publisher's credential, so this establishes that the
+package is self-consistent and reproducible, **not** that either destination is readable without a
+credential; that is checked separately from an unauthenticated client and recorded in
+`DESTINATIONS.json`. This section was written after the consumer run, so the copy the consumer
+checked carries the same data digests and the same document set but not this section; `MANIFEST.json`
+is regenerated afterwards, and the updated document is what ships in the repository and on the Hub.
+
+## 6. The documents' own commands, run with no credential at all
+
+From a client with no GitHub token, no `gh` on `PATH`, and no factory access, against the public
+repository:
+
+```bash
+git clone https://github.com/earino/chicago-doah-adjudication.git
+cd chicago-doah-adjudication
+python3 get_dataset.py --dest ./task
+( cd task && sha256sum -c ../SHA256SUMS )
+```
+
+The clone succeeded anonymously, `get_dataset.py` fetched all five assets and reported "verified
+against SHA256SUMS", and `sha256sum -c` printed `OK` for all five. That is the README's "Download
+and use" block, unchanged, run against the published bytes.
+
+**Correction.** An earlier draft of these documents told readers to run `get_dataset.py
+--staging`; that flag does not exist and the command would have failed. It was replaced by the
+command above, which is the one that was run.
