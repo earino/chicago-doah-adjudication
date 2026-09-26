@@ -256,7 +256,7 @@
   },
   "scope": "One baseline through the runner's training and validation contract. No agent or harness comparison was run and none is implied.",
   "published": true,
-  "publication_note": "Published after explicit operator authorisation, both destinations verified 2026-09-26T20:18:04+00:00. Data files, tag and artifact version are unchanged by publication.",
+  "publication_note": "Published after explicit operator authorisation, both destinations verified 2026-09-26T20:20:33+00:00. Data files, tag and artifact version are unchanged by publication.",
   "licenses": {
     "policy_version": "2026-09-19",
     "decided": "2026-09-26",
