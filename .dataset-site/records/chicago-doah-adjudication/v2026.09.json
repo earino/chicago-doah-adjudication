@@ -69,11 +69,11 @@
     "gate_version": "1.3.0",
     "result": "PASSED - 32 checks, 0 failed, on the full 53,763-case artifact, on the worker"
   },
-  "record_sha256": "373724d9745601a0b81e14ff8bed715e369e8d50a46ed27cb61a1209921f7ab1",
+  "record_sha256": "3e11aad7783a96709c0a95a2780b55de84f0ae1ff0e4181aa9c23479d8af05f3",
   "release_date": "2026-09-26",
   "release_tag": "v2026.09",
   "schema_version": 1,
-  "site_revision": 2,
+  "site_revision": 3,
   "source": {
     "name": "City of Chicago - Department of Administrative Hearings (DOAH) Ordinance Violations",
     "url": "https://data.cityofchicago.org/d/6br9-quuz"
